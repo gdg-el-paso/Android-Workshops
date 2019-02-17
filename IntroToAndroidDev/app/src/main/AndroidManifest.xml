@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.googledevelopersgroup.intro">
+
+    <!--
+    Here you are able to declare the permissions that your application is going to need.
+    For API 23 and up you are responsible for asking the user for the permissions in the app's runtime,
+    however, if the device its running API 22 or lower its going to ask for permissions when the user
+    installs the application.
+    https://developer.android.com/guide/topics/permissions/overview
+    -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
+    <!--declaration is to inform any external entity of the set of
+     hardware and software features on which your application depends. -->
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.flash"/>
 
     <application
         android:allowBackup="true"
@@ -8,7 +24,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
