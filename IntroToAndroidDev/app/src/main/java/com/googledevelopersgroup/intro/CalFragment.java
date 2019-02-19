@@ -16,11 +16,11 @@ import android.widget.TextView;
 import java.util.regex.Pattern;
 
 /**
- * The fragment that is going to contain the flashlight
+ * This fragment is going to contain the simple addition calculator
  */
-public class ExampleFragment extends Fragment {
+public class CalFragment extends Fragment {
 
-    private final String TAG = "ExampleFragment";
+    private final String TAG = "CalFragment";
 
     //These are the views that we are going to use for this simple app
     private Button additionBtn, flashBtn, btcBtn;
@@ -41,7 +41,7 @@ public class ExampleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onAttach() -Fragment");
         //going to inflate the view of the fragment
-        return inflater.inflate(R.layout.example_fragment, container, false);
+        return inflater.inflate(R.layout.cal_fragment, container, false);
     }
 
     @Override

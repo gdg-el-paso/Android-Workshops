@@ -1,25 +1,24 @@
 package com.googledevelopersgroup.intro;
 
-import android.Manifest;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     //The tag we use to filter the logcat, for life-cycles
     private final String LIFECYCLE_TAG = "LifeCycle";
-    //The request id we are going to use for the camera permission
-    private final int CAM_REQUEST = 123;
+    //The number of pages that the ViewPager is going to display
+    private final int NUM_PAGES = 2;
+    //The adapter of the ViewPager
+    private ExampleViewPagerAdapter viewPagerAdapter;
 
     private Fragment exampleFragment;
+    private ViewPager viewPager;
 
 
     @Override
@@ -29,33 +28,54 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //first ew are going to request the user for the permission to use the flashlight
-        ActivityCompat.requestPermissions(MainActivity.this,
-                new String[] {Manifest.permission.CAMERA}, CAM_REQUEST);
+//        ActivityCompat.requestPermissions(MainActivity.this,
+//                new String[] {Manifest.permission.CAMERA}, CAM_REQUEST);
 
-        //creating the fragment
-        exampleFragment = new Fragment();
-
-        //we are going to add the fragment here!
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.MainFragment, exampleFragment, "");
-        transaction.addToBackStack(null);
-        transaction.commit();
+        //initializing View Pager
+        viewPager = findViewById(R.id.ViewPager);
+        viewPagerAdapter = new ExampleViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //we are going to receive the permission result here!
-        if(requestCode == CAM_REQUEST){
-            if (grantResults.length > 0  &&  grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //Permission granted
-                Toast.makeText(MainActivity.this, "Permission was granted :)",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(MainActivity.this, "Permission Denied for the Camera :(",
-                        Toast.LENGTH_SHORT).show();
-                //Permission denied
+//        if(requestCode == CAM_REQUEST){
+//            if (grantResults.length > 0  &&  grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                //Permission granted
+//                Toast.makeText(MainActivity.this, "Permission was granted :)",
+//                        Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(MainActivity.this, "Permission Denied for the Camera :(",
+//                        Toast.LENGTH_SHORT).show();
+//                //Permission denied
+//            }
+//        }
+    }
+
+    /**
+     * This is the adapter that the ViewPager is going to use.
+     */
+    private class ExampleViewPagerAdapter extends FragmentStatePagerAdapter{
+
+        ExampleViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public android.support.v4.app.Fragment getItem(int position) {
+            if(position == 0) {
+                //If the user is in the first page we are going to display the calculator Fragment
+                return new CalFragment();
+            }else {
+                //If the user is in the second page we are going to return the BTC Fragment
+                return new BTCFragment();
             }
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_PAGES;
         }
     }
 
