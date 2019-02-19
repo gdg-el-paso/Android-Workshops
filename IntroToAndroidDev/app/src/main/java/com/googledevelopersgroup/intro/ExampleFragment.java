@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.regex.Pattern;
+
 /**
  * The fragment that is going to contain the flashlight
  */
@@ -25,6 +27,8 @@ public class ExampleFragment extends Fragment {
     private EditText num0, num1;
     private TextView flashUpdate, btcPrice, result;
 
+    //going to match for digits
+    private final Pattern digitsPatterns = Pattern.compile("^(0|[1-9][0-9]*)$");
 
     @Override
     public void onAttach(Context context) {
@@ -65,11 +69,21 @@ public class ExampleFragment extends Fragment {
         Log.i(TAG, "onStart() -Fragment");
         additionBtn.setOnClickListener(v -> {
             //we are going to add the numbers here
+
+            //first we are going retrieve the numbers from the textViews
+            int n0 = !num0.getText().toString().matches("^(0|[1-9][0-9]*)$")
+                    ? 0 : Integer.parseInt(num0.getText().toString());
+            int n1 = !num1.getText().toString().matches("^(0|[1-9][0-9]*)$")
+                    ? 0 : Integer.parseInt(num1.getText().toString());
+
+            //now we are going to add the
+            result.setText(String.valueOf((n0+n1)));
         });
+
         flashBtn.setOnClickListener(v ->{
             //we are going to turn on the light here
         });
-        btcPrice.setOnClickListener(v ->{
+        btcBtn.setOnClickListener(v ->{
             //we are going to request the price of btc here
         });
 
