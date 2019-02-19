@@ -10,11 +10,9 @@
     installs the application.
     https://developer.android.com/guide/topics/permissions/overview
     -->
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    <!--declaration is to inform any external entity of the set of
-     hardware and software features on which your application depends. -->
-    <uses-feature android:name="android.hardware.camera" />
+
 
     <application
         android:allowBackup="true"
