@@ -1,6 +1,9 @@
 package com.googledevelopersgroup.intro;
 
 import android.Manifest;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -16,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     //The request id we are going to use for the camera permission
     private final int CAM_REQUEST = 123;
 
+    private Fragment exampleFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,16 @@ public class MainActivity extends AppCompatActivity {
         //first ew are going to request the user for the permission to use the flashlight
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[] {Manifest.permission.CAMERA}, CAM_REQUEST);
+
+        //creating the fragment
+        exampleFragment = new Fragment();
+
+        //we are going to add the fragment here!
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.MainFragment, exampleFragment, "");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override

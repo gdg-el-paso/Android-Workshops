@@ -26,7 +26,6 @@ public class ExampleFragment extends Fragment {
     private TextView flashUpdate, btcPrice, result;
 
 
-
     @Override
     public void onAttach(Context context) {
         Log.i(TAG, "onAttach() -Fragment");
@@ -64,7 +63,15 @@ public class ExampleFragment extends Fragment {
     @Override
     public void onStart() {
         Log.i(TAG, "onStart() -Fragment");
-
+        additionBtn.setOnClickListener(v -> {
+            //we are going to add the numbers here
+        });
+        flashBtn.setOnClickListener(v ->{
+            //we are going to turn on the light here
+        });
+        btcPrice.setOnClickListener(v ->{
+            //we are going to request the price of btc here
+        });
 
         super.onStart();
     }
