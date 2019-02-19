@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--ViewPager: Layout manager that allows the user to flip
-     left and right through pages of data.-->
-    <android.support.v4.view.ViewPager
-        android:id="@+id/ViewPager"
+    <!--This is going to be the placeholder for the fragment that we are going to use-->
+    <fragment
+        android:id="@+id/MainFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

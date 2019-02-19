@@ -26,6 +26,7 @@ public class ExampleFragment extends Fragment {
     private TextView flashUpdate, btcPrice, result;
 
 
+
     @Override
     public void onAttach(Context context) {
         Log.i(TAG, "onAttach() -Fragment");
@@ -63,6 +64,8 @@ public class ExampleFragment extends Fragment {
     @Override
     public void onStart() {
         Log.i(TAG, "onStart() -Fragment");
+
+
         super.onStart();
     }
 
