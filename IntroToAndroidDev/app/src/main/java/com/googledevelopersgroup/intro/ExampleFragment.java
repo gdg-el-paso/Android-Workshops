@@ -82,9 +82,11 @@ public class ExampleFragment extends Fragment {
 
         flashBtn.setOnClickListener(v ->{
             //we are going to turn on the light here
+            //TODO turn the on and off the flash light of the phone
         });
         btcBtn.setOnClickListener(v ->{
             //we are going to request the price of btc here
+            //TODO make the HTTP request to https://api.coindesk.com/v1/bpi/currentprice.json for BTC Price
         });
 
         super.onStart();
