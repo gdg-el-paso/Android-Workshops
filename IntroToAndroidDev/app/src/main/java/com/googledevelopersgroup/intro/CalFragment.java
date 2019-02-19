@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,10 @@ public class CalFragment extends Fragment {
     private final String TAG = "CalFragment";
 
     //These are the views that we are going to use for this simple app
-    private Button additionBtn, flashBtn, btcBtn;
+    private Button additionBtn, subBtn, divBtn, multBtn;
     private EditText num0, num1;
-    private TextView flashUpdate, btcPrice, result;
+    private TextView result;
 
-    //going to match for digits
-    private final Pattern digitsPatterns = Pattern.compile("^(0|[1-9][0-9]*)$");
 
     @Override
     public void onAttach(Context context) {
@@ -49,12 +48,11 @@ public class CalFragment extends Fragment {
         Log.i(TAG, "onViewCreated() -Fragment");
         //Here we are going to get the views from the XML
         additionBtn = view.findViewById(R.id.addBtn);
-        flashBtn = view.findViewById(R.id.flashBtn);
-        btcBtn = view.findViewById(R.id.btcBtn);
+        subBtn = view.findViewById(R.id.SubBtn);
+        divBtn = view.findViewById(R.id.DivBtn);
+        multBtn = view.findViewById(R.id.MultBtn);
         num1 = view.findViewById(R.id.num1);
         num0 = view.findViewById(R.id.num0);
-        flashUpdate = view.findViewById(R.id.flashUpdate);
-        btcPrice = view.findViewById(R.id.btcPrice);
         result = view.findViewById(R.id.result);
     }
 
@@ -67,30 +65,43 @@ public class CalFragment extends Fragment {
     @Override
     public void onStart() {
         Log.i(TAG, "onStart() -Fragment");
+
+
+
         additionBtn.setOnClickListener(v -> {
             //we are going to add the numbers here
-
-            //first we are going retrieve the numbers from the textViews
-            int n0 = !num0.getText().toString().matches("^(0|[1-9][0-9]*)$")
-                    ? 0 : Integer.parseInt(num0.getText().toString());
-            int n1 = !num1.getText().toString().matches("^(0|[1-9][0-9]*)$")
-                    ? 0 : Integer.parseInt(num1.getText().toString());
-
             //now we are going to add the
-            result.setText(String.valueOf((n0+n1)));
+            int nums[] = getNums();
+            result.setText(String.valueOf((nums[0]+nums[1])));
         });
 
-        flashBtn.setOnClickListener(v ->{
-            //we are going to turn on the light here
-            //TODO turn the on and off the flash light of the phone
+        subBtn.setOnClickListener(v -> {
+            int nums [] = getNums();
+            result.setText(String.valueOf((nums[0] - nums[1])));
         });
-        btcBtn.setOnClickListener(v ->{
-            //we are going to request the price of btc here
-            //TODO make the HTTP request to https://api.coindesk.com/v1/bpi/currentprice.json for BTC Price
+        divBtn.setOnClickListener(v -> {
+            int nums [] = getNums();
+            result.setText(String.valueOf((nums[0]/nums[1])));
+        });
+        multBtn.setOnClickListener(v -> {
+            int nums[] = getNums();
+            result.setText(String.valueOf((nums[0]*nums[1])));
         });
 
         super.onStart();
     }
+
+    //We are going to get the numbers here.
+    int[] getNums(){
+        //first we are going retrieve the numbers from the textViews
+        int n0 = !num0.getText().toString().matches("^(0|[1-9][0-9]*)$")
+                ? 0 : Integer.parseInt(num0.getText().toString());
+        int n1 = !num1.getText().toString().matches("^(0|[1-9][0-9]*)$")
+                ? 0 : Integer.parseInt(num1.getText().toString());
+        return new int[]{n0, n1};
+    }
+
+
 
     @Override
     public void onResume() {
