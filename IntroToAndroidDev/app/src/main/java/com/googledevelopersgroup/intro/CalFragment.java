@@ -45,7 +45,7 @@ public class CalFragment extends Fragment {
         Log.i(TAG, "onViewCreated() -Fragment");
         //Here we are going to get the views from the XML
         additionBtn = view.findViewById(R.id.addBtn);
-//        subBtn = view.findViewById(R.id.SubBtn);
+        subBtn = view.findViewById(R.id.SubBtn);
         divBtn = view.findViewById(R.id.DivBtn);
         multBtn = view.findViewById(R.id.MultBtn);
         num1 = view.findViewById(R.id.num1);
@@ -72,10 +72,10 @@ public class CalFragment extends Fragment {
             result.setText(String.valueOf((nums[0]+nums[1])));
         });
 
-//        subBtn.setOnClickListener(v -> {
-//            int nums [] = getNums();
-//            result.setText(String.valueOf((nums[0] - nums[1])));
-//        });
+        subBtn.setOnClickListener(v -> {
+            int nums [] = getNums();
+            result.setText(String.valueOf((nums[0] - nums[1])));
+        });
 
         divBtn.setOnClickListener(v -> {
             int nums [] = getNums();
@@ -94,13 +94,12 @@ public class CalFragment extends Fragment {
         //first we are going retrieve the numbers from the textViews
 
         //For checking is the input is a digit
-//        int n0 = !num0.getText().toString().matches("^(0|[1-9][0-9]*)$")
-//                ? 0 : Integer.parseInt(num0.getText().toString());
-//        int n1 = !num1.getText().toString().matches("^(0|[1-9][0-9]*)$")
-//                ? 0 : Integer.parseInt(num1.getText().toString());
+        int n0 = !num0.getText().toString().matches("^(0|[1-9][0-9]*)$")
+                ? 0 : Integer.parseInt(num0.getText().toString());
+        int n1 = !num1.getText().toString().matches("^(0|[1-9][0-9]*)$")
+                ? 0 : Integer.parseInt(num1.getText().toString());
 
-        int n0 = Integer.parseInt(num0.getText().toString());
-        int n1 = Integer.parseInt(num1.getText().toString());
+
 
         return new int[]{n0, n1};
     }

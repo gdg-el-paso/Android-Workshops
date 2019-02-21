@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         //first ew are going to request the user for the permission to use the flashlight
         ActivityCompat.requestPermissions(MainActivity.this,
-                new String[] {Manifest.permission.CAMERA}, INT_PERMISSION);
+                new String[] {Manifest.permission.INTERNET}, INT_PERMISSION);
 
         //initializing View Pager
         viewPager = findViewById(R.id.ViewPager);
@@ -112,12 +112,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         Log.d(LIFECYCLE_TAG, "onRestart() called -Activity");
         super.onRestart();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d(LIFECYCLE_TAG, "onPause() called -Activity");
-        super.onPause();
     }
 
     @Override
