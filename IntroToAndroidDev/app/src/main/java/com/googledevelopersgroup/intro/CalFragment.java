@@ -6,15 +6,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.regex.Pattern;
 
 /**
  * This fragment is going to contain the simple addition calculator
@@ -48,7 +45,7 @@ public class CalFragment extends Fragment {
         Log.i(TAG, "onViewCreated() -Fragment");
         //Here we are going to get the views from the XML
         additionBtn = view.findViewById(R.id.addBtn);
-        subBtn = view.findViewById(R.id.SubBtn);
+//        subBtn = view.findViewById(R.id.SubBtn);
         divBtn = view.findViewById(R.id.DivBtn);
         multBtn = view.findViewById(R.id.MultBtn);
         num1 = view.findViewById(R.id.num1);
@@ -75,15 +72,16 @@ public class CalFragment extends Fragment {
             result.setText(String.valueOf((nums[0]+nums[1])));
         });
 
-        subBtn.setOnClickListener(v -> {
-            int nums [] = getNums();
-            result.setText(String.valueOf((nums[0] - nums[1])));
-        });
+//        subBtn.setOnClickListener(v -> {
+//            int nums [] = getNums();
+//            result.setText(String.valueOf((nums[0] - nums[1])));
+//        });
+
         divBtn.setOnClickListener(v -> {
             int nums [] = getNums();
             result.setText(String.valueOf((nums[0]/nums[1])));
         });
-        multBtn.setOnClickListener(v -> {
+        multBtn.setOnClickListener((View v) -> {
             int nums[] = getNums();
             result.setText(String.valueOf((nums[0]*nums[1])));
         });
@@ -94,10 +92,16 @@ public class CalFragment extends Fragment {
     //We are going to get the numbers here.
     int[] getNums(){
         //first we are going retrieve the numbers from the textViews
-        int n0 = !num0.getText().toString().matches("^(0|[1-9][0-9]*)$")
-                ? 0 : Integer.parseInt(num0.getText().toString());
-        int n1 = !num1.getText().toString().matches("^(0|[1-9][0-9]*)$")
-                ? 0 : Integer.parseInt(num1.getText().toString());
+
+        //For checking is the input is a digit
+//        int n0 = !num0.getText().toString().matches("^(0|[1-9][0-9]*)$")
+//                ? 0 : Integer.parseInt(num0.getText().toString());
+//        int n1 = !num1.getText().toString().matches("^(0|[1-9][0-9]*)$")
+//                ? 0 : Integer.parseInt(num1.getText().toString());
+
+        int n0 = Integer.parseInt(num0.getText().toString());
+        int n1 = Integer.parseInt(num1.getText().toString());
+
         return new int[]{n0, n1};
     }
 

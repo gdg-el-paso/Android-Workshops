@@ -26,12 +26,16 @@ public class MainActivity extends AppCompatActivity {
     private Fragment exampleFragment;
     private ViewPager viewPager;
 
+    //TODO fix android studio view.
+    //TODO btn sub explain
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(LIFECYCLE_TAG, "onCreate() called -Activity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //TODO I have to make the app look good.
 
         //first ew are going to request the user for the permission to use the flashlight
         ActivityCompat.requestPermissions(MainActivity.this,
@@ -52,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Permission was granted :)",
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(MainActivity.this, "Permission Denied for the Camera :(",
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Permission Denied for the Camera :(",
+//                        Toast.LENGTH_SHORT).show();
                 //Permission denied
             }
         }

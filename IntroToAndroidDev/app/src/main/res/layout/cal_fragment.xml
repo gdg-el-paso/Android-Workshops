@@ -47,13 +47,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.547" />
 
     <TextView
         android:id="@+id/result"
@@ -80,18 +80,8 @@
         android:text="Mult"
         app:layout_constraintBottom_toBottomOf="@+id/addBtn"
         app:layout_constraintEnd_toStartOf="@+id/addBtn"
-        app:layout_constraintStart_toEndOf="@+id/SubBtn"
-        app:layout_constraintTop_toTopOf="@+id/addBtn" />
-
-    <Button
-        android:id="@+id/SubBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Sub"
-        app:layout_constraintBottom_toBottomOf="@+id/MultBtn"
         app:layout_constraintStart_toEndOf="@+id/DivBtn"
-        app:layout_constraintTop_toTopOf="@+id/MultBtn" />
+        app:layout_constraintTop_toTopOf="@+id/addBtn" />
 
     <Button
         android:id="@+id/DivBtn"
@@ -99,7 +89,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Div"
-        app:layout_constraintBottom_toBottomOf="@+id/SubBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/MultBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/SubBtn" />
+        app:layout_constraintTop_toTopOf="@+id/MultBtn" />
+
 </android.support.constraint.ConstraintLayout>
